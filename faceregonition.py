@@ -17,22 +17,21 @@ for name in os.listdir(knownfacedir):
         encoding=face_recognition.face_encodings(image)[0]
         knownfaces.append(encoding)
         knownnames.append(name)
-        print("1over")
+
 print("Processign unknown faces")
 for filename in os.listdir(unknownfacedir):
-    #print(filename)
-    print("in for")
+    
     image=face_recognition.load_image_file(f"{unknownfacedir}/{filename}")
     print("Processign unknown loading")
     locations=face_recognition.face_locations(image,model=MODEL)
     print("Processign unknown location")
     encodings=face_recognition.face_encodings(image,locations)
-    print("encoding over")
+    
     image=cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
     
     for face_encoding, face_location in zip(encodings,locations):
         result=face_recognition.compare_faces(knownfaces,face_encoding,tolerance)
-        print("finding match")
+        print("finding match.....")
         match=None 
         if True in result:
             match=knownnames[result.index(True)]
@@ -63,7 +62,7 @@ for filename in os.listdir(unknownfacedir):
     cv2.imshow(filename,image)
 
     cv2.waitKey(10000)
-    #cv2.destroyWindow(filename)
+    
             
             
     
