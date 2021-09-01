@@ -2,8 +2,7 @@ import face_recognition
 import os
 import cv2
 knownfacedir="knownface"
-#unknownfacedir="unknownface"
-#video=cv2.VideoCapture("3.mp4")
+#unknownfacedir="unknownface" #video=cv2.VideoCapture("3.mp4")
 video=cv2.VideoCapture(0)
 tolerance=0.51
 framethickness=3
@@ -12,7 +11,6 @@ MODEL="cnn"
 print("Loading known faces")
 knownfaces=[]
 knownnames=[]
-
 for name in os.listdir(knownfacedir):
     for filename in os.listdir(f"{knownfacedir}/{name}"):
         image=face_recognition.load_image_file(f"{knownfacedir}/{name}/{filename}")
@@ -22,7 +20,7 @@ for name in os.listdir(knownfacedir):
         print("1over")
 print("Processign unknown faces")
 while True:
-    #print(filename)
+    
     print("in for")
     #image=face_recognition.load_image_file(f"{unknownfacedir}/{filename}")
     ret, image=video.read()
@@ -71,7 +69,7 @@ while True:
     #cv2.destroyWindow(filename)
             
     #video.release()
-# Destroy all the windows
+
     #cv2.destroyAllWindows()
     
             
